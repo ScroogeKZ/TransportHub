@@ -1,0 +1,24 @@
+{
+    "name": "transport-registry/php-backend",
+    "description": "PHP backend for Kazakhstan Transportation Registry System",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "ext-pdo": "*",
+        "ext-pgsql": "*",
+        "ext-json": "*",
+        "ext-session": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "TransportRegistry\\": "src/"
+        }
+    },
+    "scripts": {
+        "serve": "php -S 0.0.0.0:8000 -t public",
+        "dev": "php -S 0.0.0.0:8000 -t public"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
