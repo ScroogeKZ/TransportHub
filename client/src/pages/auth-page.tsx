@@ -1,5 +1,17 @@
-import ModernAuthForm from "@/components/ModernAuthForm";
+import { useAuth } from "@/hooks/useAuth";
+import MinimalAuthForm from "@/components/MinimalAuthForm";
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 
 export default function AuthPage() {
-  return <ModernAuthForm />;
+  const { user } = useAuth();
+  const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    if (user) {
+      setLocation("/");
+    }
+  }, [user, setLocation]);
+
+  return <MinimalAuthForm />;
 }

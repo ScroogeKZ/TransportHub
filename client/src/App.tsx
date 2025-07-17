@@ -13,10 +13,15 @@ function Router() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-gray-600">Загрузка...</p>
+          <div className="clean-card p-8 fade-in">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-lg bg-muted flex items-center justify-center">
+              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+            <p className="text-xl font-light text-foreground">Загрузка...</p>
+            <p className="text-muted-foreground mt-2">Инициализация системы</p>
+          </div>
         </div>
       </div>
     );

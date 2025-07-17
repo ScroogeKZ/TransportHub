@@ -1,6 +1,6 @@
 import { Switch, Route } from "wouter";
-import ModernLayout from "@/components/ModernLayout";
-import ModernDashboard from "@/components/ModernDashboard";
+import MinimalLayout from "@/components/MinimalLayout";
+import MinimalDashboard from "@/components/MinimalDashboard";
 import RequestForm from "@/components/RequestForm";
 import RequestsList from "@/components/RequestsList";
 import Reports from "@/components/Reports";
@@ -14,9 +14,9 @@ import NotFound from "@/pages/not-found";
 
 export default function Home() {
   return (
-    <ModernLayout>
+    <MinimalLayout>
       <Switch>
-        <Route path="/" component={ModernDashboard} />
+        <Route path="/" component={MinimalDashboard} />
         <Route path="/requests" component={RequestsList} />
         <Route path="/create" component={RequestForm} />
         <Route path="/reports" component={Reports} />
@@ -28,6 +28,6 @@ export default function Home() {
         <Route path="/super-admin" component={GodAdminDashboard} />
         <Route component={NotFound} />
       </Switch>
-    </ModernLayout>
+    </MinimalLayout>
   );
 }
