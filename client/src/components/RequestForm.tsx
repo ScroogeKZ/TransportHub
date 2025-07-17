@@ -28,6 +28,7 @@ import {
 import { insertTransportationRequestSchema } from "@shared/schema";
 import { cities, cargoTypes, transportTypes, urgencyLevels, carriers } from "@/lib/i18n";
 import { z } from "zod";
+import { ContextualTooltip, QuickHelp, FormFieldHelper } from "@/components/ui/contextual-tooltip";
 
 const formSchema = z.object({
   fromCity: z.string().min(1, "Выберите город отправления"),
@@ -134,7 +135,15 @@ export default function RequestForm() {
                     name="fromCity"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium">{t("departure_point")} *</FormLabel>
+                        <div className="flex items-center gap-2">
+                          <FormLabel className="text-sm font-medium">{t("departure_point")} *</FormLabel>
+                          <FormFieldHelper 
+                            label="Город отправления"
+                            description="Выберите город, из которого будет отправлен груз"
+                            example="Алматы, Нур-Султан, Шымкент"
+                            required={true}
+                          />
+                        </div>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger className="h-10 sm:h-11">
@@ -159,7 +168,15 @@ export default function RequestForm() {
                     name="toCity"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium">{t("destination_point")} *</FormLabel>
+                        <div className="flex items-center gap-2">
+                          <FormLabel className="text-sm font-medium">{t("destination_point")} *</FormLabel>
+                          <FormFieldHelper 
+                            label="Город назначения"
+                            description="Выберите город, в который будет доставлен груз"
+                            example="Алматы, Нур-Султан, Шымкент"
+                            required={true}
+                          />
+                        </div>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger className="h-10 sm:h-11">
@@ -184,7 +201,15 @@ export default function RequestForm() {
                     name="fromAddress"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium">Адрес отправления *</FormLabel>
+                        <div className="flex items-center gap-2">
+                          <FormLabel className="text-sm font-medium">Адрес отправления *</FormLabel>
+                          <FormFieldHelper 
+                            label="Адрес отправления"
+                            description="Точный адрес откуда будет забран груз"
+                            example="ул. Абая, 125, офис 301"
+                            required={true}
+                          />
+                        </div>
                         <FormControl>
                           <Input 
                             placeholder="Введите адрес..." 
@@ -202,7 +227,15 @@ export default function RequestForm() {
                     name="toAddress"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium">Адрес назначения *</FormLabel>
+                        <div className="flex items-center gap-2">
+                          <FormLabel className="text-sm font-medium">Адрес назначения *</FormLabel>
+                          <FormFieldHelper 
+                            label="Адрес назначения"
+                            description="Точный адрес куда будет доставлен груз"
+                            example="пр. Назарбаева, 45, склад 12"
+                            required={true}
+                          />
+                        </div>
                         <FormControl>
                           <Input 
                             placeholder="Введите адрес..." 
@@ -226,7 +259,15 @@ export default function RequestForm() {
                     name="cargoType"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium">{t("cargo_type")} *</FormLabel>
+                        <div className="flex items-center gap-2">
+                          <FormLabel className="text-sm font-medium">{t("cargo_type")} *</FormLabel>
+                          <FormFieldHelper 
+                            label="Тип груза"
+                            description="Выберите категорию груза для правильного планирования транспортировки"
+                            example="Стеклопакеты, Нержавеющая сталь, Перила"
+                            required={true}
+                          />
+                        </div>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger className="h-10 sm:h-11">
@@ -251,7 +292,15 @@ export default function RequestForm() {
                     name="weight"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium">{t("weight")} (тонн) *</FormLabel>
+                        <div className="flex items-center gap-2">
+                          <FormLabel className="text-sm font-medium">{t("weight")} (тонн) *</FormLabel>
+                          <FormFieldHelper 
+                            label="Вес груза"
+                            description="Укажите общий вес груза в тоннах. Это влияет на выбор транспорта и стоимость"
+                            example="1.5 тонн, 0.8 тонн"
+                            required={true}
+                          />
+                        </div>
                         <FormControl>
                           <Input 
                             type="number" 

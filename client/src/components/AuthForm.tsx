@@ -1,18 +1,16 @@
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Eye, EyeOff, LogIn, UserPlus } from "lucide-react";
+import { Eye, EyeOff, LogIn, UserPlus, Truck } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const loginSchema = z.object({
   email: z.string().email("Неверный формат email"),
@@ -40,8 +38,7 @@ const roleOptions = [
 ];
 
 export default function AuthForm() {
-  const { toast } = useToast();
-  const queryClient = useQueryClient();
+  const { loginMutation, registerMutation } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -65,38 +62,6 @@ export default function AuthForm() {
     },
   });
 
-  const loginMutation = useMutation({
-    mutationFn: (credentials: z.infer<typeof loginSchema>) => 
-      apiRequest("/api/auth/login", "POST", credentials),
-    onSuccess: (user) => {
-      queryClient.setQueryData(["/api/auth/user"], user);
-      toast({ title: "Успешный вход в систему" });
-    },
-    onError: (error: any) => {
-      toast({ 
-        title: "Ошибка входа", 
-        description: error.message || "Неверные учетные данные", 
-        variant: "destructive" 
-      });
-    },
-  });
-
-  const registerMutation = useMutation({
-    mutationFn: (userData: Omit<z.infer<typeof registerSchema>, 'confirmPassword'>) => 
-      apiRequest("/api/auth/register", "POST", userData),
-    onSuccess: (user) => {
-      queryClient.setQueryData(["/api/auth/user"], user);
-      toast({ title: "Регистрация прошла успешно" });
-    },
-    onError: (error: any) => {
-      toast({ 
-        title: "Ошибка регистрации", 
-        description: error.message || "Пользователь с таким email уже существует", 
-        variant: "destructive" 
-      });
-    },
-  });
-
   const onLogin = (data: z.infer<typeof loginSchema>) => {
     loginMutation.mutate(data);
   };
@@ -107,26 +72,29 @@ export default function AuthForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900">
+          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <Truck className="h-8 w-8 text-white" />
+          </div>
+          <h2 className="text-3xl font-bold text-white">
             Система управления транспортом
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-400">
             Войдите в систему или создайте новый аккаунт
           </p>
         </div>
 
-        <Card className="mt-8">
+        <Card className="glass-card border-none mt-8">
           <CardHeader>
-            <CardTitle className="text-center">Авторизация</CardTitle>
+            <CardTitle className="text-center text-white">Авторизация</CardTitle>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login">Вход</TabsTrigger>
-                <TabsTrigger value="register">Регистрация</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 bg-white/10 border-white/20">
+                <TabsTrigger value="login" className="text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600">Вход</TabsTrigger>
+                <TabsTrigger value="register" className="text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600">Регистрация</TabsTrigger>
               </TabsList>
 
               <TabsContent value="login" className="space-y-4">
@@ -137,9 +105,9 @@ export default function AuthForm() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel className="text-white">Email</FormLabel>
                           <FormControl>
-                            <Input {...field} type="email" placeholder="your@email.com" />
+                            <Input {...field} type="email" placeholder="your@email.com" className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-transparent" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -151,19 +119,20 @@ export default function AuthForm() {
                       name="password"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Пароль</FormLabel>
+                          <FormLabel className="text-white">Пароль</FormLabel>
                           <FormControl>
                             <div className="relative">
                               <Input 
                                 {...field} 
                                 type={showPassword ? "text" : "password"} 
                                 placeholder="••••••••" 
+                                className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-transparent"
                               />
                               <Button
                                 type="button"
                                 variant="ghost"
                                 size="sm"
-                                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-gray-400"
                                 onClick={() => setShowPassword(!showPassword)}
                               >
                                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -177,7 +146,7 @@ export default function AuthForm() {
 
                     <Button 
                       type="submit" 
-                      className="w-full" 
+                      className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium" 
                       disabled={loginMutation.isPending}
                     >
                       {loginMutation.isPending ? (

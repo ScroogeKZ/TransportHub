@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { Loader2, Mail, Lock, User, Eye, EyeOff, Sparkles } from "lucide-react";
+import { FormFieldHelper } from "@/components/ui/contextual-tooltip";
 
 interface LoginData {
   email: string;
@@ -134,9 +135,16 @@ export default function ModernAuthForm() {
             {!isLogin && (
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="firstName" className="text-sm font-medium text-foreground">
-                    Имя
-                  </Label>
+                  <div className="flex items-center gap-2">
+                    <Label htmlFor="firstName" className="text-sm font-medium text-foreground">
+                      Имя
+                    </Label>
+                    <FormFieldHelper 
+                      label="Имя"
+                      description="Укажите ваше имя для персонализации системы"
+                      required={true}
+                    />
+                  </div>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
@@ -153,9 +161,16 @@ export default function ModernAuthForm() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="lastName" className="text-sm font-medium text-foreground">
-                    Фамилия
-                  </Label>
+                  <div className="flex items-center gap-2">
+                    <Label htmlFor="lastName" className="text-sm font-medium text-foreground">
+                      Фамилия
+                    </Label>
+                    <FormFieldHelper 
+                      label="Фамилия"
+                      description="Укажите вашу фамилию для полной идентификации"
+                      required={true}
+                    />
+                  </div>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
@@ -175,9 +190,17 @@ export default function ModernAuthForm() {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium text-foreground">
-                Email
-              </Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="email" className="text-sm font-medium text-foreground">
+                  Email
+                </Label>
+                <FormFieldHelper 
+                  label="Email"
+                  description="Используется для входа в систему и получения уведомлений"
+                  example="user@company.com"
+                  required={true}
+                />
+              </div>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
@@ -195,9 +218,17 @@ export default function ModernAuthForm() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium text-foreground">
-                Пароль
-              </Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="password" className="text-sm font-medium text-foreground">
+                  Пароль
+                </Label>
+                <FormFieldHelper 
+                  label="Пароль"
+                  description={isLogin ? "Введите ваш пароль для входа в систему" : "Создайте надежный пароль для защиты аккаунта"}
+                  example={isLogin ? undefined : "Минимум 6 символов"}
+                  required={true}
+                />
+              </div>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
