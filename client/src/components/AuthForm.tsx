@@ -11,6 +11,7 @@ import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Eye, EyeOff, LogIn, UserPlus, Truck } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import logoPath from "@/assets/logo.png";
 
 const loginSchema = z.object({
   email: z.string().email("Неверный формат email"),
@@ -72,29 +73,35 @@ export default function AuthForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-20 blur-3xl floating-animation"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-20 blur-3xl floating-animation" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-pink-400 to-orange-400 rounded-full opacity-10 blur-3xl floating-animation" style={{animationDelay: '4s'}}></div>
+      </div>
       <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <Truck className="h-8 w-8 text-white" />
+        <div className="text-center relative z-10">
+          <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl pulse-glow p-2">
+            <img src={logoPath} alt="Хром-KZ" className="h-16 w-16 object-contain" />
           </div>
-          <h2 className="text-3xl font-bold text-white">
-            Система управления транспортом
+          <h2 className="text-4xl font-bold gradient-text mb-4">
+            Хром-KZ
           </h2>
-          <p className="mt-2 text-sm text-gray-400">
-            Войдите в систему или создайте новый аккаунт
+          <p className="mt-2 text-lg text-gray-600">
+            Система управления транспортом
           </p>
         </div>
 
-        <Card className="glass-card border-none mt-8">
+        <Card className="glass-card border-none mt-8 relative z-10">
           <CardHeader>
-            <CardTitle className="text-center text-white">Авторизация</CardTitle>
+            <CardTitle className="text-center text-gray-800 text-2xl">Авторизация</CardTitle>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 bg-white/10 border-white/20">
-                <TabsTrigger value="login" className="text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600">Вход</TabsTrigger>
-                <TabsTrigger value="register" className="text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600">Регистрация</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 bg-purple-100/50 border-purple-200/50 p-1">
+                <TabsTrigger value="login" className="text-gray-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white data-[state=active]:shadow-lg">Вход</TabsTrigger>
+                <TabsTrigger value="register" className="text-gray-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white data-[state=active]:shadow-lg">Регистрация</TabsTrigger>
               </TabsList>
 
               <TabsContent value="login" className="space-y-4">
@@ -105,9 +112,9 @@ export default function AuthForm() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Email</FormLabel>
+                          <FormLabel className="text-gray-700 font-semibold">Email</FormLabel>
                           <FormControl>
-                            <Input {...field} type="email" placeholder="your@email.com" className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-transparent" />
+                            <Input {...field} type="email" placeholder="your@email.com" className="bg-white/70 border-purple-200/50 text-gray-800 placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 focus:ring-2 transition-all duration-300" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -119,20 +126,20 @@ export default function AuthForm() {
                       name="password"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Пароль</FormLabel>
+                          <FormLabel className="text-gray-700 font-semibold">Пароль</FormLabel>
                           <FormControl>
                             <div className="relative">
                               <Input 
                                 {...field} 
                                 type={showPassword ? "text" : "password"} 
                                 placeholder="••••••••" 
-                                className="bg-white/10 border-white/20 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-transparent"
+                                className="bg-white/70 border-purple-200/50 text-gray-800 placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 focus:ring-2 transition-all duration-300"
                               />
                               <Button
                                 type="button"
                                 variant="ghost"
                                 size="sm"
-                                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-gray-400"
+                                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-purple-100/50 text-gray-600 hover:text-purple-600"
                                 onClick={() => setShowPassword(!showPassword)}
                               >
                                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -146,14 +153,17 @@ export default function AuthForm() {
 
                     <Button 
                       type="submit" 
-                      className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium" 
+                      className="w-full btn-gradient text-white font-semibold py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300" 
                       disabled={loginMutation.isPending}
                     >
                       {loginMutation.isPending ? (
-                        "Вход..."
+                        <div className="flex items-center">
+                          <div className="loading-spinner w-5 h-5 mr-2"></div>
+                          Вход...
+                        </div>
                       ) : (
                         <>
-                          <LogIn className="w-4 h-4 mr-2" />
+                          <LogIn className="w-5 h-5 mr-2" />
                           Войти
                         </>
                       )}
@@ -171,9 +181,9 @@ export default function AuthForm() {
                         name="firstName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Имя</FormLabel>
+                            <FormLabel className="text-gray-700 font-semibold">Имя</FormLabel>
                             <FormControl>
-                              <Input {...field} placeholder="Имя" />
+                              <Input {...field} placeholder="Имя" className="bg-white/70 border-purple-200/50 text-gray-800 placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 focus:ring-2 transition-all duration-300" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -185,9 +195,9 @@ export default function AuthForm() {
                         name="lastName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Фамилия</FormLabel>
+                            <FormLabel className="text-gray-700 font-semibold">Фамилия</FormLabel>
                             <FormControl>
-                              <Input {...field} placeholder="Фамилия" />
+                              <Input {...field} placeholder="Фамилия" className="bg-white/70 border-purple-200/50 text-gray-800 placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 focus:ring-2 transition-all duration-300" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -200,9 +210,9 @@ export default function AuthForm() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel className="text-gray-700 font-semibold">Email</FormLabel>
                           <FormControl>
-                            <Input {...field} type="email" placeholder="your@email.com" />
+                            <Input {...field} type="email" placeholder="your@email.com" className="bg-white/70 border-purple-200/50 text-gray-800 placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 focus:ring-2 transition-all duration-300" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -214,10 +224,10 @@ export default function AuthForm() {
                       name="role"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Роль</FormLabel>
+                          <FormLabel className="text-gray-700 font-semibold">Роль</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger>
+                              <SelectTrigger className="bg-white/70 border-purple-200/50 text-gray-800 focus:ring-purple-500 focus:border-purple-500 focus:ring-2 transition-all duration-300">
                                 <SelectValue />
                               </SelectTrigger>
                             </FormControl>
@@ -239,19 +249,20 @@ export default function AuthForm() {
                       name="password"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Пароль</FormLabel>
+                          <FormLabel className="text-gray-700 font-semibold">Пароль</FormLabel>
                           <FormControl>
                             <div className="relative">
                               <Input 
                                 {...field} 
                                 type={showPassword ? "text" : "password"} 
                                 placeholder="••••••••" 
+                                className="bg-white/70 border-purple-200/50 text-gray-800 placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 focus:ring-2 transition-all duration-300"
                               />
                               <Button
                                 type="button"
                                 variant="ghost"
                                 size="sm"
-                                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-purple-100/50 text-gray-600 hover:text-purple-600"
                                 onClick={() => setShowPassword(!showPassword)}
                               >
                                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -268,19 +279,20 @@ export default function AuthForm() {
                       name="confirmPassword"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Подтвердите пароль</FormLabel>
+                          <FormLabel className="text-gray-700 font-semibold">Подтвердите пароль</FormLabel>
                           <FormControl>
                             <div className="relative">
                               <Input 
                                 {...field} 
                                 type={showConfirmPassword ? "text" : "password"} 
                                 placeholder="••••••••" 
+                                className="bg-white/70 border-purple-200/50 text-gray-800 placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 focus:ring-2 transition-all duration-300"
                               />
                               <Button
                                 type="button"
                                 variant="ghost"
                                 size="sm"
-                                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-purple-100/50 text-gray-600 hover:text-purple-600"
                                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                               >
                                 {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -294,14 +306,17 @@ export default function AuthForm() {
 
                     <Button 
                       type="submit" 
-                      className="w-full" 
+                      className="w-full btn-gradient text-white font-semibold py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300" 
                       disabled={registerMutation.isPending}
                     >
                       {registerMutation.isPending ? (
-                        "Регистрация..."
+                        <div className="flex items-center">
+                          <div className="loading-spinner w-5 h-5 mr-2"></div>
+                          Регистрация...
+                        </div>
                       ) : (
                         <>
-                          <UserPlus className="w-4 h-4 mr-2" />
+                          <UserPlus className="w-5 h-5 mr-2" />
                           Зарегистрироваться
                         </>
                       )}

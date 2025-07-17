@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/hooks/useLanguage";
 import { Truck, DollarSign, Clock, Calculator } from "lucide-react";
 import { ResponsiveCard } from "./ResponsiveCard";
+import logoPath from "@/assets/logo.png";
 
 export default function Dashboard() {
   const { t } = useLanguage();
@@ -28,6 +29,15 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6 p-4 sm:p-6">
+      {/* Header */}
+      <div className="text-center mb-8">
+        <div className="flex items-center justify-center space-x-4 mb-4">
+          <img src={logoPath} alt="Хром-KZ" className="h-12 w-12 object-contain" />
+          <h1 className="text-3xl font-bold text-gray-900">Хром-KZ</h1>
+        </div>
+        <p className="text-gray-600">Система управления транспортом</p>
+      </div>
+
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <ResponsiveCard>

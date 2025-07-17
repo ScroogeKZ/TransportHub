@@ -26,6 +26,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import logoPath from "@/assets/logo.png";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -143,9 +144,12 @@ export default function Layout({ children }: LayoutProps) {
             </Button>
             
             <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
-              <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
-                {t("transport_registry")}
-              </h1>
+              <div className="flex items-center space-x-3">
+                <img src={logoPath} alt="Хром-KZ" className="h-8 w-8 object-contain" />
+                <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
+                  Хром-KZ
+                </h1>
+              </div>
               <span className="text-xs sm:text-sm text-gray-500 hidden sm:block">
                 {t("logistics_system")}
               </span>

@@ -1,10 +1,10 @@
-modules = ["nodejs-20", "php-8.2", "bash", "web", "postgresql-16"]
+modules = ["nodejs-20", "web", "php-8.2"]
 run = "npm run dev"
 hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["php82", "php82Extensions.pdo", "php82Extensions.pdo_pgsql", "php82Extensions.pgsql", "jq"]
+packages = ["php82", "php82Extensions.pdo", "php82Extensions.pdo_pgsql", "php82Extensions.pgsql", "jq", "php82Extensions.session", "php82Extensions.mbstring", "php82Extensions.openssl", "php82Extensions.curl"]
 
 [deployment]
 deploymentTarget = "autoscale"

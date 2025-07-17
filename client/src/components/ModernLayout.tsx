@@ -29,6 +29,7 @@ import {
   Bell,
   Search,
 } from "lucide-react";
+import logoPath from "@/assets/logo.png";
 
 interface ModernLayoutProps {
   children: React.ReactNode;
@@ -145,12 +146,12 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
             </Button>
             
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                <Truck className="h-4 w-4 text-white" />
+              <div className="w-8 h-8 rounded-xl bg-white flex items-center justify-center p-1">
+                <img src={logoPath} alt="Хром-KZ" className="h-6 w-6 object-contain" />
               </div>
               <div>
                 <h1 className="text-lg font-bold text-white">
-                  {t("transport_registry")}
+                  Хром-KZ
                 </h1>
                 <p className="text-sm text-gray-400 hidden sm:block">
                   {t("logistics_system")}

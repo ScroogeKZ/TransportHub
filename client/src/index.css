@@ -5,40 +5,45 @@
 @tailwind utilities;
 
 :root {
-  --background: hsl(222, 84%, 4.9%);
-  --foreground: hsl(210, 40%, 98%);
-  --muted: hsl(217, 32%, 17.5%);
-  --muted-foreground: hsl(215, 20%, 65%);
-  --popover: hsl(222, 84%, 4.9%);
-  --popover-foreground: hsl(210, 40%, 98%);
-  --card: hsl(222, 84%, 4.9%);
-  --card-foreground: hsl(210, 40%, 98%);
-  --border: hsl(217, 32%, 17.5%);
-  --input: hsl(217, 32%, 17.5%);
-  --primary: hsl(210, 40%, 98%);
-  --primary-foreground: hsl(222, 84%, 4.9%);
-  --secondary: hsl(217, 32%, 17.5%);
-  --secondary-foreground: hsl(210, 40%, 98%);
-  --accent: hsl(217, 32%, 17.5%);
-  --accent-foreground: hsl(210, 40%, 98%);
-  --destructive: hsl(0, 62.8%, 30.6%);
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(222, 84%, 4.9%);
+  --muted: hsl(210, 40%, 98%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(222, 84%, 4.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(222, 84%, 4.9%);
+  --border: hsl(214, 32%, 91%);
+  --input: hsl(214, 32%, 91%);
+  --primary: hsl(262, 83%, 58%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(210, 40%, 96%);
+  --secondary-foreground: hsl(222, 84%, 4.9%);
+  --accent: hsl(210, 40%, 96%);
+  --accent-foreground: hsl(222, 84%, 4.9%);
+  --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(210, 40%, 98%);
-  --ring: hsl(212, 95%, 56%);
-  --radius: 0.5rem;
+  --ring: hsl(262, 83%, 58%);
+  --radius: 0.75rem;
   
-  /* Modern gradient colors */
-  --gradient-primary: linear-gradient(135deg, hsl(212, 95%, 56%) 0%, hsl(221, 91%, 62%) 100%);
-  --gradient-secondary: linear-gradient(135deg, hsl(262, 83%, 58%) 0%, hsl(213, 93%, 67%) 100%);
+  /* Modern bright gradient colors */
+  --gradient-primary: linear-gradient(135deg, hsl(262, 83%, 58%) 0%, hsl(213, 93%, 67%) 100%);
+  --gradient-secondary: linear-gradient(135deg, hsl(295, 100%, 70%) 0%, hsl(262, 83%, 58%) 100%);
   --gradient-success: linear-gradient(135deg, hsl(158, 64%, 52%) 0%, hsl(160, 84%, 39%) 100%);
   --gradient-warning: linear-gradient(135deg, hsl(32, 95%, 44%) 0%, hsl(45, 93%, 47%) 100%);
   --gradient-danger: linear-gradient(135deg, hsl(0, 84%, 60%) 0%, hsl(348, 83%, 47%) 100%);
+  --gradient-info: linear-gradient(135deg, hsl(199, 89%, 48%) 0%, hsl(217, 91%, 60%) 100%);
+  --gradient-purple: linear-gradient(135deg, hsl(295, 100%, 70%) 0%, hsl(262, 83%, 58%) 100%);
+  --gradient-pink: linear-gradient(135deg, hsl(329, 86%, 70%) 0%, hsl(295, 100%, 70%) 100%);
+  --gradient-orange: linear-gradient(135deg, hsl(24, 95%, 53%) 0%, hsl(32, 95%, 44%) 100%);
+  --gradient-teal: linear-gradient(135deg, hsl(173, 80%, 40%) 0%, hsl(158, 64%, 52%) 100%);
   
   /* Chart colors */
-  --chart-1: hsl(263, 70%, 50%);
-  --chart-2: hsl(142, 76%, 36%);
+  --chart-1: hsl(262, 83%, 58%);
+  --chart-2: hsl(158, 64%, 52%);
   --chart-3: hsl(32, 95%, 44%);
   --chart-4: hsl(0, 84%, 60%);
-  --chart-5: hsl(217, 70%, 50%);
+  --chart-5: hsl(217, 91%, 60%);
 }
 
 .dark {
@@ -52,16 +57,16 @@
   --card-foreground: hsl(210, 40%, 98%);
   --border: hsl(217, 32%, 17.5%);
   --input: hsl(217, 32%, 17.5%);
-  --primary: hsl(210, 40%, 98%);
-  --primary-foreground: hsl(222, 84%, 4.9%);
+  --primary: hsl(262, 83%, 58%);
+  --primary-foreground: hsl(210, 40%, 98%);
   --secondary: hsl(217, 32%, 17.5%);
   --secondary-foreground: hsl(210, 40%, 98%);
   --accent: hsl(217, 32%, 17.5%);
   --accent-foreground: hsl(210, 40%, 98%);
-  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(210, 40%, 98%);
-  --ring: hsl(212, 95%, 56%);
-  --radius: 0.5rem;
+  --ring: hsl(262, 83%, 58%);
+  --radius: 0.75rem;
 }
 
 @layer base {
@@ -76,7 +81,7 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    background: linear-gradient(135deg, hsl(222, 84%, 4.9%) 0%, hsl(216, 25%, 8%) 100%);
+    background: linear-gradient(135deg, hsl(240, 100%, 98%) 0%, hsl(295, 100%, 95%) 50%, hsl(262, 100%, 97%) 100%);
     min-height: 100vh;
   }
 
@@ -96,9 +101,9 @@
 @layer components {
   .glass-card {
     @apply backdrop-blur-xl rounded-2xl shadow-2xl;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.6);
   }
 
   .gradient-text {
@@ -113,30 +118,48 @@
 
   .btn-gradient:hover {
     transform: translateY(-1px);
-    box-shadow: 0 8px 25px rgba(131, 37, 234, 0.3);
+    box-shadow: 0 8px 25px rgba(131, 37, 234, 0.4);
   }
 
   .status-badge {
     @apply px-3 py-1 inline-flex text-xs font-medium rounded-full transition-all duration-200;
   }
 
-  .status-created { 
-    @apply bg-blue-500/20 text-blue-300 border border-blue-500/30; 
+  .card-modern {
+    @apply rounded-xl shadow-lg border border-white/20 bg-white/60 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:scale-[1.02];
   }
-  .status-logistics { 
-    @apply bg-yellow-500/20 text-yellow-300 border border-yellow-500/30; 
+
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, hsl(262, 83%, 58%) 0%, hsl(213, 93%, 67%) 100%);
+    border-radius: 0.75rem;
+    padding: 1px;
   }
-  .status-manager { 
-    @apply bg-purple-500/20 text-purple-300 border border-purple-500/30; 
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: white;
+    border-radius: calc(0.75rem - 1px);
   }
-  .status-finance { 
-    @apply bg-orange-500/20 text-orange-300 border border-orange-500/30; 
+
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
   }
-  .status-approved { 
-    @apply bg-green-500/20 text-green-300 border border-green-500/30; 
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
   }
-  .status-rejected { 
-    @apply bg-red-500/20 text-red-300 border border-red-500/30; 
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(131, 37, 234, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(131, 37, 234, 0.6); }
   }
 
   .nav-link {
@@ -163,6 +186,15 @@
     box-shadow: 0 8px 25px rgba(131, 37, 234, 0.4);
   }
 }
+
+/* Status styles for different request states */
+.status-created { @apply bg-blue-500/10 text-blue-600 border border-blue-500/20; }
+.status-logistics { @apply bg-purple-500/10 text-purple-600 border border-purple-500/20; }
+.status-manager { @apply bg-orange-500/10 text-orange-600 border border-orange-500/20; }
+.status-finance { @apply bg-green-500/10 text-green-600 border border-green-500/20; }
+.status-approved { @apply bg-emerald-500/10 text-emerald-600 border border-emerald-500/20; }
+.status-rejected { @apply bg-red-500/10 text-red-600 border border-red-500/20; }
+.status-completed { @apply bg-teal-500/10 text-teal-600 border border-teal-500/20; }
 
 /* Animations */
 @keyframes slideInFromBottom {
@@ -197,166 +229,53 @@
   50% { opacity: 0.8; }
 }
 
-.animate-slide-in {
-  animation: slideInFromBottom 0.4s ease-out;
+/* Utility classes */
+.slide-in-bottom {
+  animation: slideInFromBottom 0.5s ease-out;
 }
 
-.animate-slide-in-right {
-  animation: slideInFromRight 0.4s ease-out;
+.slide-in-right {
+  animation: slideInFromRight 0.5s ease-out;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out;
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
 }
 
-.animate-pulse-soft {
-  animation: pulse 2s infinite;
+/* Responsive design utilities */
+@media (max-width: 640px) {
+  .glass-card {
+    @apply rounded-xl;
+  }
+  
+  .card-modern {
+    @apply rounded-lg;
+  }
 }
 
-/* Chart.js responsive fix */
-.chart-container {
-  @apply relative h-80 w-full rounded-2xl overflow-hidden;
-  background: rgba(131, 37, 234, 0.05);
-  backdrop-filter: blur(10px);
-}
-
-/* Custom scrollbar - modern dark theme */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: hsl(240, 3.7%, 15.9%);
-  border-radius: 8px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, hsl(263, 70%, 50%), hsl(293, 70%, 60%));
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, hsl(263, 70%, 60%), hsl(293, 70%, 70%));
-  transform: scale(1.1);
-}
-
-/* Loading states */
+/* Loading and skeleton styles */
 .skeleton {
-  @apply bg-muted animate-pulse rounded;
+  @apply animate-pulse bg-gray-300 rounded;
 }
 
-.loading-shimmer {
-  background: linear-gradient(90deg, 
-    hsl(240, 3.7%, 15.9%) 25%, 
-    hsl(240, 5%, 20%) 50%, 
-    hsl(240, 3.7%, 15.9%) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+.loading-spinner {
+  @apply animate-spin rounded-full border-4 border-purple-200 border-t-purple-600;
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+/* Modern scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* Modern table styles */
-.modern-table {
-  @apply w-full rounded-2xl overflow-hidden;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+::-webkit-scrollbar-track {
+  background: hsl(210, 40%, 98%);
 }
 
-.modern-table th {
-  @apply px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider;
-  background: rgba(131, 37, 234, 0.1);
-  color: hsl(0, 0%, 80%);
+::-webkit-scrollbar-thumb {
+  background: hsl(262, 83%, 58%);
+  border-radius: 3px;
 }
 
-.modern-table td {
-  @apply px-6 py-4 whitespace-nowrap text-sm transition-colors duration-200;
-}
-
-.modern-table tr:hover {
-  @apply bg-white/5;
-}
-
-/* Form improvements */
-.modern-form {
-  @apply space-y-6;
-}
-
-.modern-input {
-  @apply w-full px-4 py-3 rounded-xl border border-border backdrop-blur-sm;
-  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary;
-  @apply transition-all duration-200;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.modern-input:focus {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-1px);
-}
-
-/* Notification styles */
-.notification {
-  @apply fixed top-4 right-4 z-50 max-w-sm rounded-2xl p-4 shadow-2xl;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  animation: slideInFromRight 0.3s ease-out;
-}
-
-.notification.success {
-  @apply border-green-500/30;
-  background: rgba(34, 197, 94, 0.1);
-}
-
-.notification.error {
-  @apply border-red-500/30;
-  background: rgba(239, 68, 68, 0.1);
-}
-
-.notification.warning {
-  @apply border-yellow-500/30;
-  background: rgba(245, 158, 11, 0.1);
-}
-
-/* Bright tooltip animations */
-@keyframes glow-pulse {
-  0%, 100% { 
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-    transform: scale(1);
-  }
-  50% { 
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
-    transform: scale(1.02);
-  }
-}
-
-@keyframes tooltip-bounce {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-2px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes rainbow-glow {
-  0% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
-  25% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
-  50% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.4); }
-  75% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
-  100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
-}
-
-.tooltip-glow {
-  animation: glow-pulse 2s ease-in-out infinite;
-}
-
-.tooltip-bounce {
-  animation: tooltip-bounce 0.6s ease-in-out;
-}
-
-.rainbow-glow {
-  animation: rainbow-glow 3s ease-in-out infinite;
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(262, 83%, 50%);
 }
