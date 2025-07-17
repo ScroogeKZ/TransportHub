@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,11 +6,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { Loader2, Mail, Lock, User, Eye, EyeOff, Sparkles } from "lucide-react";
 import { FormFieldHelper } from "@/components/ui/contextual-tooltip";
-
-interface LoginData {
-  email: string;
-  password: string;
-}
 
 interface RegisterData {
   firstName: string;
@@ -30,68 +24,7 @@ export default function ModernAuthForm() {
     password: "",
   });
   const { toast } = useToast();
-  const { login } = useAuth();
-
-  const loginMutation = useMutation({
-    mutationFn: async (data: LoginData) => {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Неверные учетные данные");
-      }
-
-      return response.json();
-    },
-    onSuccess: (user) => {
-      login(user);
-      toast({
-        title: "Успешно!",
-        description: "Вы вошли в систему",
-      });
-    },
-    onError: (error: Error) => {
-      toast({
-        title: "Ошибка входа",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
-
-  const registerMutation = useMutation({
-    mutationFn: async (data: RegisterData) => {
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Ошибка регистрации");
-      }
-
-      return response.json();
-    },
-    onSuccess: (user) => {
-      login(user);
-      toast({
-        title: "Добро пожаловать!",
-        description: "Аккаунт успешно создан",
-      });
-    },
-    onError: (error: Error) => {
-      toast({
-        title: "Ошибка регистрации",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
+  const { loginMutation, registerMutation } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -285,9 +218,9 @@ export default function ModernAuthForm() {
         <div className="mt-6 glass-card p-4 rounded-xl border border-border/20 animate-slide-in" style={{ animationDelay: "0.2s" }}>
           <h3 className="text-sm font-medium text-foreground mb-2">Демо доступ:</h3>
           <div className="text-xs text-muted-foreground space-y-1">
-            <p><strong>Email:</strong> admin@test.com</p>
-            <p><strong>Пароль:</strong> admin123</p>
-            <p><strong>Роль:</strong> Генеральный директор</p>
+            <p><strong>Email:</strong> test@test.com</p>
+            <p><strong>Пароль:</strong> test123</p>
+            <p><strong>Роль:</strong> Прораб</p>
           </div>
         </div>
       </div>

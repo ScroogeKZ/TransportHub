@@ -50,6 +50,7 @@ export function setupAuth(app: Express) {
     pool,
     createTableIfMissing: true,
     tableName: 'session',
+    touchAfter: 86400, // 1 day
   });
 
   app.use(session({
